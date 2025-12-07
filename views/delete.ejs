@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete User</title>
+
+    <style>
+        body {
+            font-family: "Segoe UI", sans-serif;
+            background: #f7f7fb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .card {
+            background: #ffffff;
+            width: 380px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            animation: fadeIn 0.4s ease;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 20px;
+            font-weight: bold;
+            color: #222;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: #666;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            text-align: left;
+            margin-bottom: 5px;
+            color: #444;
+        }
+
+        input {
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 10px;
+            outline: none;
+            margin-bottom: 18px;
+            transition: 0.2s;
+        }
+
+        input:focus {
+            border-color: #d9534f;
+        }
+
+        .delete-btn {
+            width: 100%;
+            background: #d9534f;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        .delete-btn:hover {
+            background: #b52b27;
+        }
+
+        .cancel-link {
+            display: inline-block;
+            margin-top: 10px;
+            text-decoration: none;
+            font-size: 14px;
+            color: #007bff;
+        }
+
+        .cancel-link:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>Confirm Delete</h2>
+        <p>Are you sure you want to delete:</p>
+        <strong><%= user.name %> (<%= user.email %>)(<%= user.password %>)</strong>
+
+
+        <form action="/user/<%= user.id %>/delete?_method=DELETE" method="POST">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="Enter email to confirm" required>
+
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Enter password to confirm" required>
+
+            <button type="submit" class="delete-btn">Yes, Delete User</button>
+        </form>
+
+        <a href="/users" class="cancel-link">Cancel</a>
+    </div>
+
+</body>
+</html>

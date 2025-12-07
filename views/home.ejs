@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <style>
+        body {
+            font-family: "Segoe UI", sans-serif;
+            background: #eef3f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .card {
+            width: 380px;
+            background: #fff;
+            padding: 35px 28px;
+            border-radius: 14px;
+            text-align: center;
+            box-shadow: 0px 6px 20px rgba(0,0,0,0.15);
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        h2 {
+            margin: 0 0 15px;
+            font-size: 22px;
+            color: #0b3d91;
+        }
+
+        .count-tag {
+            margin-top: 10px;
+            display: inline-block;
+            padding: 6px 16px;
+            background: #17a2b8;
+            color: white;
+            font-weight: bold;
+            border-radius: 20px;
+        }
+
+        .join-btn {
+            width: 100%;
+            background: #007bff;
+            border: none;
+            padding: 11px;
+            margin-top: 18px;
+            color: white;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: .25s;
+        }
+        .join-btn:hover {
+            background: #005fcc;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="card">
+        <h2>Total Registered Users</h2>
+        <div class="count-tag"><%= count %></div>
+
+        <button class="join-btn" onclick="window.location.href='/users'">View Users</button>
+    </div>
+
+</body>
+</html>

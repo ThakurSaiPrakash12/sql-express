@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit User</title>
+
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            width: 380px;
+            padding: 25px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .container h2 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: #222;
+        }
+
+        label {
+            text-align: left;
+            font-size: 14px;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 6px;
+            color: #444;
+        }
+
+        input, textarea {
+            width: 100%;
+            border: 1px solid #d1d1d1;
+            border-radius: 8px;
+            padding: 10px;
+            outline: none;
+            margin-bottom: 15px;
+            transition: 0.2s;
+        }
+
+        textarea {
+            height: 45px;
+            resize: none;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #007bff;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #007bff;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        button:hover {
+            background: #005fcc;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 12px;
+            font-size: 14px;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Edit User</h2>
+
+        <form action="/user/<%= user.id %>/update?_method=PATCH" method="POST">
+            <label>Username</label>
+            <textarea name="username"><%= user.name %></textarea>
+
+            <label>Confirm Password</label>
+            <!-- value="<%= user.password %>" removed for security reasons -->
+            <input type="password" name="password" placeholder="Enter your password to confirm">
+
+            <button type="submit">Update User</button>
+        </form>
+
+        <a href="/users" class="back-link">Back to Users</a>
+    </div>
+</body>
+</html>

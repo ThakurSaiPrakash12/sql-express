@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users List</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, sans-serif;
+            background: #f3f4f7;
+            margin: 0;
+            padding: 30px 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            width: 90%;
+            max-width: 900px;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.15);
+            animation: fadeIn 0.4s ease;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #0b3d91;
+        }
+
+        .top-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-input {
+            padding: 8px 14px;
+            width: 250px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: #007bff;
+        }
+
+        .add-btn, .search-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            transition: .25s;
+        }
+
+        .add-btn {
+            background-color: #28a745;
+        }
+        .add-btn:hover { background-color: #227d38; }
+
+        .search-btn {
+            background-color: #007bff;
+        }
+        .search-btn:hover { background-color: #005fcc; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th {
+            background: #0b3d91;
+            color: white;
+            text-transform: uppercase;
+        }
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+        tr:hover {
+            background: #f0f7ff;
+        }
+        .edit-btn {
+            padding: 6px 12px;
+            background: #007bff;
+            border: none;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .delete-btn {
+            background-color: #dc3545;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <h2>All Users <span class="count-tag"><%= users.length %></span></h2>
+
+    <!-- ⭐ Search & Add Button -->
+    <div class="top-actions">
+        <form class="search-box" action="/search" method="GET">
+            <input type="text" name="q" placeholder="Search by name or email..." class="search-input">
+            <button class="search-btn">Search</button>
+        </form>
+
+        <button class="add-btn" onclick="window.location.href='/add'">Add User</button>
+    </div>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+
+        <% users.forEach(user => { %>
+        <tr>
+            <td><%= user.id %></td>
+            <td><%= user.name %></td>
+            <td><%= user.email %></td>
+            <td>
+                <form action="/user/<%= user.id %>/edit" method="GET">
+                    <button class="edit-btn">Edit</button>
+                </form>
+            </td>
+            <td>
+                <form action="/user/<%= user.id %>/delete" method="GET">
+                    <button class="edit-btn delete-btn">Delete</button>
+                </form>
+            </td>
+        </tr>
+        <% }) %>
+    </table>
+</div>
+
+</body>
+</html>
